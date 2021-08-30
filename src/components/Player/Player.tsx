@@ -28,16 +28,18 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   key: string;
 }
-export const Player: React.FC<Props> = ({ name, key }) => {
-  const [score, setScore] = useState<PlayerScore>({
-    yellow: 0,
-    blue: 0,
-    green: 0,
-    orange: 0,
-    purple: 0,
-    fox: 0,
-    total: 0,
-  });
+
+const emptyScore = {
+  yellow: 0,
+  blue: 0,
+  green: 0,
+  orange: 0,
+  purple: 0,
+  fox: 0,
+  total: 0,
+};
+export const Player: React.FC<Props> = ({ name }: { name: string }) => {
+  const [score, setScore] = useState<PlayerScore>(emptyScore);
 
   const setTheScore = (colour: string, value: number) => {
     if (score[colour] !== undefined) {
@@ -50,16 +52,20 @@ export const Player: React.FC<Props> = ({ name, key }) => {
     }
   };
 
+  const colours = ["yellow", "blue", "green", "orange", "purple", "fox"];
   return (
-    <section key={key}>
+    <section>
       <p>{name}</p>
       <div style={{ width: "100px", display: "flex" }}>
-        <Number type={"yellow"} setScore={setTheScore}></Number>
-        <Number type={"blue"} setScore={setTheScore}></Number>
-        <Number type={"green"} setScore={setTheScore}></Number>
-        <Number type={"orange"} setScore={setTheScore}></Number>
-        <Number type={"purple"} setScore={setTheScore}></Number>
-        <Number type={"fox"} setScore={setTheScore}></Number>
+        {colours.map((c) => (
+          <Number
+            key={c}
+            type={c}
+            setScore={setTheScore}
+            score={score}
+          ></Number>
+        ))}
+
         <h3>total: {score.total}</h3>
       </div>
     </section>
