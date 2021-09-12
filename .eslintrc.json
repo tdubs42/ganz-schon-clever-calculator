@@ -1,0 +1,7 @@
+{
+  "extends": ["prettier", "@aerian/eslint-config"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"]
+  }
+}
