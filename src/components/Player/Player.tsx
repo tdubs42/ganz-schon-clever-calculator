@@ -1,4 +1,4 @@
-import React, { useState, useEffect, InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes } from "react";
 import { Number } from "../Number";
 
 interface PlayerScoreColours {
@@ -26,21 +26,16 @@ const calculateTotal = ({ fox, total, ...colours }: PlayerScore) => {
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
+  score: PlayerScore;
+  setPlayerScore: (name: string, score: PlayerScore) => {};
   key: string;
 }
 
-const emptyScore = {
-  yellow: 0,
-  blue: 0,
-  green: 0,
-  orange: 0,
-  purple: 0,
-  fox: 0,
-  total: 0,
-};
-export const Player: React.FC<Props> = ({ name }: { name: string }) => {
-  const [score, setScore] = useState<PlayerScore>(emptyScore);
-
+export const Player: React.FC<Props> = ({
+  name,
+  score,
+  setPlayerScore,
+}: Props) => {
   const setTheScore = (colour: string, value: number) => {
     if (score[colour] !== undefined) {
       const newScore = {
@@ -48,7 +43,7 @@ export const Player: React.FC<Props> = ({ name }: { name: string }) => {
         [colour]: value > 0 ? value : 0,
       };
       const total = calculateTotal(newScore);
-      setScore({ ...newScore, total });
+      setPlayerScore(name, { ...newScore, total });
     }
   };
 
