@@ -1,5 +1,5 @@
 {
-  "extends": ["prettier", "@aerian/eslint-config"],
+  "extends": ["prettier", "@aerian/eslint-config-react"],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": ["error"]
