@@ -49,37 +49,61 @@ const IndexPage = () => {
   };
 
   return (
-    <main>
-      <title>Ganz Schön Clever Calculator</title>
+    <>
+      <main>
+        <title>Ganz Schön Clever Calculator</title>
 
-      {players &&
-        Object.keys(players).map((key, index) => {
-          return (
-            <Player
-              name={key}
-              score={players[key].score}
-              setPlayerScore={setPlayerScore}
-              key={`${key}${index}`}
-            />
-          );
-        })}
+        {players &&
+          Object.keys(players).map((key, index) => {
+            return (
+              <Player
+                name={key}
+                score={players[key].score}
+                setPlayerScore={setPlayerScore}
+                key={`${key}${index}`}
+              />
+            );
+          })}
 
-      <br />
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="name"
-          name="playerName"
-          value={name}
-          onChange={onChangeHandler}
-        />
-        <button>Add player</button>
-      </form>
+        <br />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="name"
+            name="playerName"
+            value={name}
+            onChange={onChangeHandler}
+          />
+          <button>Add player</button>
+        </form>
 
-      <br />
-      <button onClick={() => setPlayers([])}>Remove Players</button>
-      {ongoingGame && <button onClick={() => resetGame()}>Reset Game</button>}
-    </main>
+        <br />
+        <button onClick={() => setPlayers([])}>Remove Players</button>
+        {ongoingGame && <button onClick={() => resetGame()}>Reset Game</button>}
+      </main>
+      <footer
+        // style={{ position: "absolute", bottom: "10px", margin: "0 auto" }}
+        style={{
+          position: "fixed",
+          left: "50%",
+          bottom: "0px",
+          transform: "translate(-50%, -50%)",
+          margin: "0 auto",
+        }}
+      >
+        <h5>
+          Hacktoberfest PR-s are welcome!
+          <br />
+          Fork it on{" "}
+          <a href="https://github.com/soosgyul/ganz-schon-clever-calculator">
+            Github
+          </a>{" "}
+          <br />
+          Read more about{" "}
+          <a href="https://hacktoberfest.digitalocean.com/">Hacktoberfest</a>
+        </h5>
+      </footer>
+    </>
   );
 };
 
