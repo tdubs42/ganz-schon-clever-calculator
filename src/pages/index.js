@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Player from "../components/Player";
 // markup
 const IndexPage = () => {
   const [players, setPlayers] = useState({});
   const [name, setName] = useState("");
-
+  const [ongoingGame, setOngoingGame] = useState(false);
   const onChangeHandler = (e) => {
     setName(e.target.value);
   };
@@ -31,12 +31,21 @@ const IndexPage = () => {
     setPlayers({ ...players, [name]: { score } });
   };
 
+  useEffect(() => {
+    const isThereAnOngoingGame = Object.keys(players).reduce((acc, cur) => {
+      return acc || !!players[cur].score.total;
+    }, false);
+
+    setOngoingGame(isThereAnOngoingGame);
+  });
+
   const resetGame = () => {
     const playerNames = Object.keys(players);
     const newPlayers = playerNames.reduce((acc, cur) => {
       return { ...acc, [cur]: { score: emptyScore } };
     }, {});
     setPlayers(newPlayers);
+    setOngoingGame(false);
   };
 
   return (
@@ -69,7 +78,7 @@ const IndexPage = () => {
 
       <br />
       <button onClick={() => setPlayers([])}>Remove Players</button>
-      <button onClick={() => resetGame()}>Reset Game</button>
+      {ongoingGame && <button onClick={() => resetGame()}>Reset Game</button>}
     </main>
   );
 };
