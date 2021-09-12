@@ -1,4 +1,4 @@
-import React, { useState, useEffect, InputHTMLAttributes } from "react";
+import React, { useState } from "react";
 import Player from "../components/Player";
 // markup
 const IndexPage = () => {
