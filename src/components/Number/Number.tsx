@@ -18,6 +18,8 @@ export const Number = ({ type: colour, setScore, score }) => {
           value={score[colour]}
           onFocus={handleFocus}
         ></input>
+
+        {colour === "fox" && <label>number of foxes ^^</label>}
       </div>
     </>
   );
