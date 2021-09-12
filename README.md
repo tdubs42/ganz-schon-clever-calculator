@@ -11,6 +11,8 @@
 
 This page is useful when you want to quickly calculate the final score of a Ganz Schön Clever game.
 
+The project is currently deployed to [gsc.soos.uk](https://gsc.soos.uk)
+
 This project and gsc.soos.uk is in not associated with the creators of the Ganz Schön Clever game and it's a no profit, only for fun project.
 
 I know it's not much now... but pr-s are always welcome! 😉
