@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import Player from '../components/Player';
+import React, { useEffect, useState } from "react";
+import Player from "../components/Player";
 // markup
 const IndexPage = () => {
     const [players, setPlayers] = useState({});
-    const [name, setName] = useState('');
+    const [name, setName] = useState("");
     const [ongoingGame, setOngoingGame] = useState(false);
     const onChangeHandler = (e) => {
         setName(e.target.value);
@@ -24,7 +24,7 @@ const IndexPage = () => {
         const playerName =
             e.target.playerName.value || `Player ${players.length + 1}`;
         setPlayers({ ...players, [playerName]: { score: emptyScore } });
-        setName('');
+        setName("");
     };
 
     const setPlayerScore = (name, score) => {
@@ -86,22 +86,22 @@ const IndexPage = () => {
             <footer
                 // style={{ position: "absolute", bottom: "10px", margin: "0 auto" }}
                 style={{
-                    position: 'fixed',
-                    left: '50%',
-                    bottom: '0px',
-                    transform: 'translate(-50%, -50%)',
-                    margin: '0 auto',
+                    position: "fixed",
+                    left: "50%",
+                    bottom: "0px",
+                    transform: "translate(-50%, -50%)",
+                    margin: "0 auto",
                 }}
             >
                 <h5>
                     Hacktoberfest PR-s are welcome!
                     <br />
-                    Fork it on{' '}
+                    Fork it on{" "}
                     <a href="https://github.com/soosgyul/ganz-schon-clever-calculator">
                         Github
-                    </a>{' '}
+                    </a>{" "}
                     <br />
-                    Read more about{' '}
+                    Read more about{" "}
                     <a href="https://hacktoberfest.digitalocean.com/">
                         Hacktoberfest
                     </a>

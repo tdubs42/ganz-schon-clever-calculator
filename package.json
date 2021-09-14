@@ -1,36 +1,36 @@
 {
-  "name": "gsc-calculator",
-  "version": "1.0.0",
-  "private": true,
-  "description": "gsc-calculator",
-  "author": "Gyula Soos",
-  "keywords": [
-    "gatsby"
-  ],
-  "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
-  },
-  "dependencies": {
-    "classnames": "^2.3.1",
-    "gatsby": "^3.10.2",
-    "gatsby-plugin-gatsby-cloud": "^2.10.0",
-    "gatsby-plugin-sass": "^4.10.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "sass": "^1.36.0"
-  },
-  "devDependencies": {
-    "@aerian/eslint-config-react": "^11.0.1",
-    "@aerian/eslint-config-typescript": "^11.0.1",
-    "@typescript-eslint/parser": "^4.31.1",
-    "eslint": "^7.32.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "i": "^0.3.6",
-    "npm": "^7.23.0",
-    "prettier": "^2.4.0"
-  }
+    "name": "gsc-calculator",
+    "version": "1.0.0",
+    "private": true,
+    "description": "gsc-calculator",
+    "author": "Gyula Soos",
+    "keywords": [
+        "gatsby"
+    ],
+    "scripts": {
+        "develop": "gatsby develop",
+        "start": "gatsby develop",
+        "build": "gatsby build",
+        "serve": "gatsby serve",
+        "clean": "gatsby clean"
+    },
+    "dependencies": {
+        "classnames": "^2.3.1",
+        "gatsby": "^3.10.2",
+        "gatsby-plugin-gatsby-cloud": "^2.10.0",
+        "gatsby-plugin-sass": "^4.10.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "sass": "^1.36.0"
+    },
+    "devDependencies": {
+        "@aerian/eslint-config-react": "^11.0.1",
+        "@aerian/eslint-config-typescript": "^11.0.1",
+        "@typescript-eslint/parser": "^4.31.1",
+        "eslint": "^7.32.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "i": "^0.3.6",
+        "npm": "^7.23.0",
+        "prettier": "^2.4.0"
+    }
 }

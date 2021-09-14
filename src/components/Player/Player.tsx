@@ -1,5 +1,5 @@
-import React, { InputHTMLAttributes } from 'react';
-import { Number } from '../Number';
+import React, { InputHTMLAttributes } from "react";
+import { Number } from "../Number";
 
 interface PlayerScoreColours {
     yellow: number;
@@ -47,11 +47,11 @@ export const Player: React.FC<Props> = ({
         }
     };
 
-    const colours = ['yellow', 'blue', 'green', 'orange', 'purple', 'fox'];
+    const colours = ["yellow", "blue", "green", "orange", "purple", "fox"];
     return (
         <section>
             <p>{name}</p>
-            <div style={{ width: '100px', display: 'flex' }}>
+            <div style={{ width: "100px", display: "flex" }}>
                 {colours.map((c) => (
                     <Number
                         key={c}
