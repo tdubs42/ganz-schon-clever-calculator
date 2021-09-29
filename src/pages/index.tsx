@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
+import View from "../components/View";
 import Player from "../components/Player";
 // markup
 const IndexPage = () => {
     const [players, setPlayers] = useState({});
     const [name, setName] = useState("");
     const [ongoingGame, setOngoingGame] = useState(false);
-    const onChangeHandler = (e) => {
+    const onChangeHandler = (e: {
+        target: { value: React.SetStateAction<string> };
+    }) => {
         setName(e.target.value);
     };
 
@@ -22,12 +25,13 @@ const IndexPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const playerName =
-            e.target.playerName.value || `Player ${players.length + 1}`;
+            e.target.playerName.value ||
+            `Player ${Object.keys(players).length + 1}`;
         setPlayers({ ...players, [playerName]: { score: emptyScore } });
         setName("");
     };
 
-    const setPlayerScore = (name, score) => {
+    const setPlayerScore = (name: string, score: string) => {
         setPlayers({ ...players, [name]: { score } });
     };
 
@@ -50,7 +54,7 @@ const IndexPage = () => {
 
     return (
         <>
-            <main>
+            <View>
                 <title>Ganz Schön Clever Calculator</title>
 
                 {players &&
@@ -82,31 +86,7 @@ const IndexPage = () => {
                 {ongoingGame && (
                     <button onClick={() => resetGame()}>Reset Game</button>
                 )}
-            </main>
-            <footer
-                // style={{ position: "absolute", bottom: "10px", margin: "0 auto" }}
-                style={{
-                    position: "fixed",
-                    left: "50%",
-                    bottom: "0px",
-                    transform: "translate(-50%, -50%)",
-                    margin: "0 auto",
-                }}
-            >
-                <h5>
-                    Hacktoberfest PR-s are welcome!
-                    <br />
-                    Fork it on{" "}
-                    <a href="https://github.com/soosgyul/ganz-schon-clever-calculator">
-                        Github
-                    </a>{" "}
-                    <br />
-                    Read more about{" "}
-                    <a href="https://hacktoberfest.digitalocean.com/">
-                        Hacktoberfest
-                    </a>
-                </h5>
-            </footer>
+            </View>
         </>
     );
 };
