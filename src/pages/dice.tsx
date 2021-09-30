@@ -57,9 +57,14 @@ const DicePage = () => {
 
     const handleShuffle = useCallback(() => {
         if (currentDice) {
-            const silverDice = dicePool.filter(
-                (die) => die.number < currentDice.number
-            );
+            let silverDice = [];
+            if ([...onPaper, currentDice].length === 3) {
+                silverDice = [...dicePool];
+            } else {
+                silverDice = dicePool.filter(
+                    (die) => die.number < currentDice.number
+                );
+            }
             const silverColours = silverDice.map((d) => d.colour);
             const remainingSetOfColours = availableColours
                 .filter((ac) => ac !== currentDice.colour)
@@ -87,7 +92,7 @@ const DicePage = () => {
 
     return (
         <View>
-            <div className={cx([styles.dice, styles.mainSelection])}>
+            <div className={cx([styles.dice])}>
                 {dicePool.map(({ colour, number }, key) => {
                     return (
                         <Die
@@ -105,10 +110,10 @@ const DicePage = () => {
             <div>
                 <div>
                     <label>
-                        {currentDice?.colour
-                            ? `Chosen die - when you've filled your sheet, press "save
-                        and shuffle"`
-                            : "Select a die from above"}
+                        {currentDice?.colour &&
+                            `Chosen die - when you've filled your sheet, press "save
+                        and shuffle"`}
+                        {dicePool.length ? "Select a die from above" : ""}
                     </label>
                 </div>
 
