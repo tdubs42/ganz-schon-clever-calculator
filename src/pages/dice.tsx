@@ -111,6 +111,7 @@ const DicePage = () => {
                             : "Select a die from above"}
                     </label>
                 </div>
+
                 <div className={cx([styles.dice])}>
                     {currentDice && (
                         <Die
@@ -124,6 +125,24 @@ const DicePage = () => {
                     )}
                 </div>
             </div>
+            <hr />
+            <div className={cx(styles.controls)}>
+                <button
+                    className={cx(styles.button)}
+                    disabled={onPaper.length === 3}
+                    onClick={() => handleShuffle()}
+                >
+                    {currentDice?.colour ? "save and shuffle" : "re-shuffle"}
+                </button>
+                <button
+                    className={cx(styles.button)}
+                    onClick={() => handleReset()}
+                >
+                    New round
+                </button>
+            </div>
+            <hr />
+
             <div className={cx([styles.dice, styles.paper])}>
                 <p>On your paper:</p>
                 <div style={{ display: "flex" }}>
@@ -158,21 +177,6 @@ const DicePage = () => {
                         );
                     })}
                 </div>
-            </div>
-            <div className={cx(styles.controls)}>
-                <button
-                    className={cx(styles.button)}
-                    disabled={onPaper.length === 3}
-                    onClick={() => handleShuffle()}
-                >
-                    {currentDice?.colour ? "save and shuffle" : "re-shuffle"}
-                </button>
-                <button
-                    className={cx(styles.button)}
-                    onClick={() => handleReset()}
-                >
-                    New round
-                </button>
             </div>
         </View>
     );
