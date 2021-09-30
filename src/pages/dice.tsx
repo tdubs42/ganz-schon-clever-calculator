@@ -19,7 +19,7 @@ const DicePage = () => {
     const diceColours = [
         "orange",
         "white",
-        "blue",
+        "RoyalBlue",
         "green",
         "yellow",
         "purple",
