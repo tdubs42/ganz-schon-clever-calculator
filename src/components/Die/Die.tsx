@@ -1,7 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import cs from "classnames";
 import * as styles from "./Die.module.scss";
-export const Die = ({ props: { colour, number, toggle } }) => {
+
+export interface ADie {
+    colour: string;
+    number: number;
+}
+interface DieProps {
+    props: {
+        colour: string;
+        number: number;
+        toggle?: (dice: ADie) => void;
+    };
+}
+
+export const Die = ({ props: { colour, number, toggle } }: DieProps) => {
     const handleFocus = (event: { target: { select: () => any } }) =>
         event.target.select();
 
@@ -84,7 +97,11 @@ export const Die = ({ props: { colour, number, toggle } }) => {
         }
     }, [number, colour]);
 
-    return <div onClick={() => toggle({ colour, number })}>{diceContent}</div>;
+    return (
+        <div onClick={() => toggle && toggle({ colour, number })}>
+            {diceContent}
+        </div>
+    );
 };
 
 export default Die;

@@ -1,13 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import cx from "classnames";
-import { Die } from "../components/Die/Die";
+import { ADie, Die } from "../components/Die/Die";
 import View from "../components/View";
 import * as styles from "./dice.module.scss";
-
-interface ADie {
-    colour: string;
-    number: number;
-}
 
 const getRandomNumbers = (colours: string[]): ADie[] =>
     colours.map((colour) => ({
@@ -39,16 +34,10 @@ const DicePage = () => {
 
     const toggleSelection = useCallback(
         (dice) => {
-            if (
-                !silverPlate.find((d) => d.colour === dice.colour) ||
-                (!onPaper.find((d) => d.colour === dice.colour) &&
-                    availableColours.length)
-            ) {
-                if (JSON.stringify(currentDice) === JSON.stringify(dice)) {
-                    setCurrentDice(undefined);
-                } else {
-                    setCurrentDice(dice);
-                }
+            if (JSON.stringify(currentDice) === JSON.stringify(dice)) {
+                setCurrentDice(undefined);
+            } else {
+                setCurrentDice(dice);
             }
         },
 
@@ -134,7 +123,9 @@ const DicePage = () => {
             <div className={cx(styles.controls)}>
                 <button
                     className={cx(styles.button)}
-                    disabled={onPaper.length === 3}
+                    disabled={
+                        onPaper.length === 3 || availableColours.length === 0
+                    }
                     onClick={() => handleShuffle()}
                 >
                     {currentDice?.colour ? "save and shuffle" : "re-shuffle"}
@@ -157,7 +148,6 @@ const DicePage = () => {
                                 props={{
                                     colour,
                                     number,
-                                    toggle: toggleSelection,
                                 }}
                                 key={`onPaper${key}${colour}`}
                             />
@@ -175,7 +165,6 @@ const DicePage = () => {
                                 props={{
                                     colour,
                                     number,
-                                    toggle: toggleSelection,
                                 }}
                                 key={`silver-${key}${colour}`}
                             />
