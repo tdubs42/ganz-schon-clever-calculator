@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
+import cx from "classnames";
 import { Die } from "../components/Die/Die";
 import View from "../components/View";
+import * as styles from "./dice.module.scss";
 
 interface ADie {
     colour: string;
@@ -37,10 +39,16 @@ const DicePage = () => {
 
     const toggleSelection = useCallback(
         (dice) => {
-            if (JSON.stringify(currentDice) === JSON.stringify(dice)) {
-                setCurrentDice(undefined);
-            } else {
-                setCurrentDice(dice);
+            if (
+                !silverPlate.find((d) => d.colour === dice.colour) ||
+                (!onPaper.find((d) => d.colour === dice.colour) &&
+                    availableColours.length)
+            ) {
+                if (JSON.stringify(currentDice) === JSON.stringify(dice)) {
+                    setCurrentDice(undefined);
+                } else {
+                    setCurrentDice(dice);
+                }
             }
         },
 
@@ -73,15 +81,13 @@ const DicePage = () => {
         setOnPaper([]);
     }, []);
 
-    useEffect(
-        () => setDicePool(getRandomNumbers(availableColours)),
-        [availableColours]
-    );
+    useEffect(() => {
+        setDicePool(getRandomNumbers(availableColours));
+    }, [availableColours]);
 
     return (
         <View>
-            <div style={{ display: "flex" }}>
-                {/* all the unselected dice come here */}
+            <div className={cx([styles.dice, styles.mainSelection])}>
                 {dicePool.map(({ colour, number }, key) => {
                     return (
                         <Die
@@ -96,22 +102,30 @@ const DicePage = () => {
                 })}
             </div>
 
-            <div>current dice</div>
             <div>
-                {currentDice && (
-                    <Die
-                        props={{
-                            colour: currentDice.colour,
-                            number: currentDice.number,
-                            toggle: toggleSelection,
-                        }}
-                        key={`current-${currentDice.colour}`}
-                    />
-                )}
+                <div>
+                    <label>
+                        {currentDice?.colour
+                            ? `Chosen die - when you've filled your sheet, press "save
+                        and shuffle"`
+                            : "Select a die from above"}
+                    </label>
+                </div>
+                <div className={cx([styles.dice])}>
+                    {currentDice && (
+                        <Die
+                            props={{
+                                colour: currentDice.colour,
+                                number: currentDice.number,
+                                toggle: toggleSelection,
+                            }}
+                            key={`current-${currentDice.colour}`}
+                        />
+                    )}
+                </div>
             </div>
-
-            <div>
-                <p>here would come the selected dice</p>
+            <div className={cx([styles.dice, styles.paper])}>
+                <p>On your paper:</p>
                 <div style={{ display: "flex" }}>
                     {onPaper.map(({ colour, number }, key) => {
                         return (
@@ -128,8 +142,9 @@ const DicePage = () => {
                 </div>
             </div>
 
-            <div style={{ backgroundColor: "silver" }}>
-                <div style={{ display: "flex" }}>
+            <div>
+                <legend>Silver Plate</legend>
+                <div className={cx([styles.dice, styles.silverPlate])}>
                     {silverPlate.map(({ colour, number }, key) => {
                         return (
                             <Die
@@ -144,13 +159,21 @@ const DicePage = () => {
                     })}
                 </div>
             </div>
-            <button
-                disabled={onPaper.length === 3}
-                onClick={() => handleShuffle()}
-            >
-                shuffle
-            </button>
-            <button onClick={() => handleReset()}>reset</button>
+            <div className={cx(styles.controls)}>
+                <button
+                    className={cx(styles.button)}
+                    disabled={onPaper.length === 3}
+                    onClick={() => handleShuffle()}
+                >
+                    {currentDice?.colour ? "save and shuffle" : "re-shuffle"}
+                </button>
+                <button
+                    className={cx(styles.button)}
+                    onClick={() => handleReset()}
+                >
+                    New round
+                </button>
+            </div>
         </View>
     );
 };

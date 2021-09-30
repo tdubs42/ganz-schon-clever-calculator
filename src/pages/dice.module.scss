@@ -1,0 +1,36 @@
+.button {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+.dice {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.silverPlate {
+    background-color: silver;
+    border: 1px solid black;
+    border-radius: 25px;
+    min-height: 25px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    margin: 20px;
+}
+.paper {
+    background-color: beige;
+    border: 1px solid coral;
+}
